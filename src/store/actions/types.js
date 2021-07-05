@@ -1,0 +1,9 @@
+export const START_FETCH_ORDERS = "START_FETCH_ORDERS";
+export const SET_ORDERS_DATA = "SET_ORDERS_DATA";
+export const ORDERS_FETCH_FAILED = "ORDERS_FETCH_FAILED";
+export const SEARCH_ORDERS = "SEARCH_ORDERS";
+export const SORT_CATEGORY = "SORT_CATEGORY";
+export const SORT_ALPHABET = "SORT_ALPHABET";
+export const SORT_DATE = "SORT_DATE";
+export const PREV_PAGE = "PREV_PAGE";
+export const NEXT_PAGE = "NEXT_PAGE";
