@@ -21,6 +21,15 @@ export const getOrders = () => {
       let payload = {};
       if (status === 200) {
         payload.orders = response.data;
+       await Promise.all(
+         payload.orders.orders.map((item) => {
+           return fetch(
+             `https://api.hatchways.io/assessment/workers/${item.workerId}`
+           )
+             .then((res) => res.json())
+             .then((data) => (item.worker = data.worker));
+         })
+       );
         dispatch({ type: SET_ORDERS_DATA, payload });
       } else {
         payload.errorMsg = "failed to fetch data";

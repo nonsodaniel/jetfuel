@@ -21,6 +21,7 @@ const INTIAL_STATE = {
   pageLength: 9,
   pageData: [],
   currentCategory: "All",
+  workerData: [],
 };
 
 export const reducer = (state = INTIAL_STATE, actions) => {
@@ -48,12 +49,11 @@ export const reducer = (state = INTIAL_STATE, actions) => {
       };
     case SEARCH_ORDERS:
       const { searchValue } = actions.payload;
-
       let searchData =
         searchValue === ""
           ? state.allOrders
-          : state.allOrders.filter(({ name }) =>
-              name.includes(searchValue.toLowerCase())
+          : state.allOrders.filter(({ worker: { name } }) =>
+              name.toLowerCase().includes(searchValue.toLowerCase())
             );
       return {
         ...state,
@@ -66,7 +66,6 @@ export const reducer = (state = INTIAL_STATE, actions) => {
       };
     case SORT_DATE:
       const { activeDate } = actions.payload;
-      console.log("active", activeDate);
       let sortDateData =
         activeDate === "Earliest"
           ? [...state.allOrders].sort((a, b) =>

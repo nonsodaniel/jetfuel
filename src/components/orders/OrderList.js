@@ -1,53 +1,47 @@
 import PropTypes from "prop-types";
-import { useCallback, useEffect, useState } from "react";
 
 const OrderList = ({ orders }) => {
-  const [workerDetails, setWorkerDetails] = useState({});
-  const { id, name, description, workerId, deadline } = orders;
-
-  const fetchWorker = useCallback(() => {
-    fetch(`https://api.hatchways.io/assessment/workers/${workerId}`)
-      .then((res) => res.json())
-      .then((data) => setWorkerDetails(data.worker));
-  }, [workerId]);
-  useEffect(() => {
-    fetchWorker()
-  }, [fetchWorker])
+  console.log("ord", orders)
+  const { id, name, description, workerId, deadline, worker,
+    worker:{companyName, email, image } } = orders || {};
+// let {id, name} = orders.worker
   return (
-    <div className="order" key={id}>
+    <div className="order" key={id} data-testid="order_list">
       <div className="card order-card">
         <div className="order-details">
           <div className="top">
             <div className="photo-wrap">
-              <img src={workerDetails && workerDetails.image} alt="order-img" />
+              <img src={ image} alt="order-img" />
             </div>
-          <h3>{workerDetails && workerDetails.name}</h3>
-          <p className="email">{workerDetails && workerDetails.email}</p>
-          <p>Company: <i><b>{workerDetails && workerDetails.companyName}</b></i> </p>
-          <p></p>
+            <h3>{worker && worker.name}</h3>
+            <p className="email">{email}</p>
+            <p>
+              Company:{" "}
+              <i>
+                <b>{companyName}</b>
+              </i>{" "}
+            </p>
+            <p></p>
           </div>
-        
-         
-          <div className="bottom">
-          <h4 className="worker__title">Worker Details</h4>
-          <p className="order__desc">{description}</p>
-          <div className="workerId-wrap">
-           <div className="title">Worker Id</div>
-           <div className="desc">{workerId}</div>
-         </div>
-         <div className="name-wrap">
-           <div className="title">Name</div>
-           <div className="desc">{name}</div>
-         </div>
-       
-         <div className="workerId-wrap">
-           <div className="title">Deadline</div>
-           <div className="desc">{new Date(deadline).toLocaleString()}</div>
-         </div>
 
+          <div className="bottom">
+            <h4 className="worker__title">Worker Details</h4>
+            <p className="order__desc">{description}</p>
+            <div className="workerId-wrap">
+              <div className="title">Worker Id</div>
+              <div className="desc">{workerId}</div>
+            </div>
+            <div className="name-wrap">
+              <div className="title">Name</div>
+              <div className="desc">{name}</div>
+            </div>
+
+            <div className="workerId-wrap">
+              <div className="title">Deadline</div>
+              <div className="desc">{new Date(deadline).toLocaleString()}</div>
+            </div>
           </div>
         </div>
-      
       </div>
     </div>
   );
