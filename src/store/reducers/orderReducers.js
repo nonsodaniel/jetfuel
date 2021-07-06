@@ -66,6 +66,7 @@ export const reducer = (state = INTIAL_STATE, actions) => {
       };
     case SORT_DATE:
       const { activeDate } = actions.payload;
+      console.log("active", activeDate);
       let sortDateData =
         activeDate === "Earliest"
           ? [...state.allOrders].sort((a, b) =>
