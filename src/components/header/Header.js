@@ -32,7 +32,7 @@ const Header = (props) => {
               <i className="fas fa-search"></i>
             </span>
           </div>
-          <div className="sort-row">
+          <div className="sort-row" data-testid="sort-row">
             <div className="select-wrap sort-items">
               <Switch />
             </div>
