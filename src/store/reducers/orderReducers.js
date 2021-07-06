@@ -18,7 +18,7 @@ const INTIAL_STATE = {
   search: true,
   totalPages: 1,
   currentPage: 1,
-  pageLength: 15,
+  pageLength: 9,
   pageData: [],
   currentCategory: "All",
 };

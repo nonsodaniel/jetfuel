@@ -2,13 +2,14 @@ import PropTypes from "prop-types";
 import { useCallback, useEffect, useState } from "react";
 
 const OrderList = ({ orders }) => {
-  const [workerDetails, setWorkerDetails] = useState({})
-  let url = `https://api.hatchways.io/assessment/workers`
+  const [workerDetails, setWorkerDetails] = useState({});
   const { id, name, description, workerId, deadline } = orders;
 
-  const fetchWorker = useCallback(() => { 
-    fetch(`${url}/${workerId}`).then(res => res.json()).then(data=> setWorkerDetails(data.worker))
-  }, [url]);
+  const fetchWorker = useCallback(() => {
+    fetch(`https://api.hatchways.io/assessment/workers/${workerId}`)
+      .then((res) => res.json())
+      .then((data) => setWorkerDetails(data.worker));
+  }, [workerId]);
   useEffect(() => {
     fetchWorker()
   }, [fetchWorker])
