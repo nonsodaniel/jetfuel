@@ -1,10 +1,15 @@
 import PropTypes from "prop-types";
 
 const OrderList = ({ orders }) => {
-  console.log("ord", orders)
-  const { id, name, description, workerId, deadline, worker,
-    worker:{companyName, email, image } } = orders || {};
-// let {id, name} = orders.worker
+  const {
+    id,
+    name,
+    description,
+    workerId,
+    deadline,
+    worker,
+    worker: { companyName, email, image },
+  } = orders || {};
   return (
     <div className="order" key={id} data-testid="order_list">
       <div className="card order-card">
